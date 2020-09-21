@@ -1,9 +1,15 @@
 import React from 'react'
+import { clearCurrent } from '../../actions/logActions'
+import { connect } from 'react-redux'
 
-const AddBtn = () => {
+const AddBtn = ({ clearCurrent }) => {
   return (
     <div className='fixed-action-btn'>
-      <a href="#add-log-modal" className="btn-floating btn-large blue darken-2 modal-trigger">
+      <a
+        href="#log-modal"
+        className="btn-floating btn-large blue darken-2 modal-trigger"
+        onClick={() => clearCurrent()}
+      >
         <i className="large material-icons">add</i>
       </a>
       <ul>
@@ -22,4 +28,4 @@ const AddBtn = () => {
   )
 }
 
-export default AddBtn
+export default connect(null, { clearCurrent })(AddBtn)

@@ -1,16 +1,43 @@
-import React, { useState } from 'react'
-import M from 'materialize-css/dist/js/materialize.min.js'
+import React, { Fragment, useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { addLog, updateLog } from '../../actions/logActions';
 
-const EditLogModal = () => {
+import M from 'materialize-css/dist/js/materialize.min.js';
+
+const LogModal = ({ addLog, current, updateLog }) => {
   const [message, setMessage] = useState('');
   const [attention, setAttention] = useState(false);
   const [tech, setTech] = useState('');
+
+  useEffect(() => {
+    if (current) {
+      setMessage(current.message);
+      setAttention(current.attention);
+      setTech(current.tech);
+    } else {
+      setMessage('');
+      setAttention(false);
+      setTech('');
+    }
+  }, [current]);
 
   const onSubmit = () => {
     if (!message || !tech) {
       M.toast({ html: 'Please enter a message and tech' });
     } else {
-      console.log(message, tech, attention)
+      const newLog = {
+        id: current ? current.id : null,
+        message,
+        attention,
+        tech,
+        date: new Date()
+      }
+
+      current ? updateLog(newLog) : addLog(newLog);
+
+      M.toast({ html: `Log ${current ? 'updated' : 'added'} by ${tech}` })
+
       setMessage('');
       setTech('');
       setAttention(false);
@@ -18,7 +45,7 @@ const EditLogModal = () => {
   }
 
   return (
-    <div id='edit-log-modal' className='modal' style={modalStyle}>
+    <div id='log-modal' className='modal' style={modalStyle}>
       <div className="modal-content">
         <h4>Enter System Log</h4>
         <div className="row">
@@ -29,9 +56,11 @@ const EditLogModal = () => {
               value={message}
               onChange={e => setMessage(e.target.value)}
             />
-            <label htmlFor="message" className='active'>
-              Log Message
-            </label>
+            <Fragment>
+              {!message ? (<label htmlFor="message" className='active'>
+                Log Message
+              </label>) : null}
+            </Fragment>
           </div>
         </div>
 
@@ -99,9 +128,19 @@ const EditLogModal = () => {
   )
 }
 
+LogModal.propTypes = {
+  addLog: PropTypes.func.isRequired,
+  updateLog: PropTypes.func.isRequired,
+  current: PropTypes.object,
+}
+
+const mapStateToProps = state => ({
+  current: state.log.current
+})
+
 const modalStyle = {
   width: '75%',
   height: '75%'
 }
 
-export default EditLogModal
+export default connect(mapStateToProps, { addLog, updateLog })(LogModal)
