@@ -1,25 +1,25 @@
 {
   "logs": [
     {
-      "id": 1,
-      "message": "Changed hard drive on workstation 005",
+      "message": "built new node 677",
       "attention": false,
-      "date": "03-02-2019",
-      "tech": "Sam Smith"
+      "tech": "Sam Smith",
+      "date": "2020-09-21T01:13:04.344Z",
+      "id": 4
     },
     {
-      "id": 2,
-      "message": "Workstation 007 not posting",
+      "message": "System 6885 is down",
       "attention": true,
-      "date": "03-02-2019",
-      "tech": "John Doe"
+      "tech": "Sara Wilson",
+      "date": "2020-09-21T01:51:58.479Z",
+      "id": 5
     },
     {
-      "id": 3,
-      "message": "Changed memory on workstation 050",
-      "attention": false,
-      "date": "03-02-2019",
-      "tech": "Lisa Wright"
+      "message": "New Hard drive for 958",
+      "attention": true,
+      "tech": "Sam Smith",
+      "date": "2020-09-21T01:52:28.681Z",
+      "id": 6
     }
   ],
   "techs": [
