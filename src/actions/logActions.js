@@ -4,6 +4,7 @@ import {
   DELETE_LOG,
   GET_LOGS,
   LOGS_ERROR,
+  SEARCH_LOGS,
   SET_CURRENT,
   SET_LOADING,
   UPDATE_LOG,
@@ -96,6 +97,13 @@ export const updateLog = log => async dispatch => {
       type: LOGS_ERROR,
       payload: error.response.data
     })
+  }
+}
+
+export const searchLogs = (text) => {
+  return {
+    type: SEARCH_LOGS,
+    payload: text
   }
 }
 

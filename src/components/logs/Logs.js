@@ -6,7 +6,13 @@ import Preloader from '../layouts/Preloader';
 import PropTypes from 'prop-types';
 import { getLogs } from '../../actions/logActions';
 
-const Logs = ({ log: { logs, loading }, getLogs }) => {
+const Logs = ({ log: { logs, loading, search }, getLogs }) => {
+
+  const compareSearch = (log, search) => {
+    return (log.message.toLowerCase().includes(search.toLowerCase()) ||
+      log.tech.toLowerCase().includes(search.toLowerCase()) ||
+      log.id.toString().toLowerCase().includes(search.toLowerCase()));
+  }
 
   useEffect(() => {
     getLogs();
@@ -19,7 +25,7 @@ const Logs = ({ log: { logs, loading }, getLogs }) => {
           <h4 className="center">System Logs</h4>
         </li>
         {logs.length < 1 ? (<p className="center">No logs to show...</p>) : (
-          logs.map(log => <LogItem log={log} key={log.id} />)
+          logs.filter(log => search ? compareSearch(log, search) : log).map(log => <LogItem log={log} key={log.id} />)
         )}
       </ul>
     )
@@ -31,7 +37,7 @@ Logs.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-  log: state.log
+  log: state.log,
 })
 
 // const mapDispatchToProps = {
