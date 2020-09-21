@@ -1,14 +1,16 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { deleteTech, editTech } from '../../actions/techActions';
 
-const LogItem = ({ tech }) => {
+const LogItem = ({ tech, deleteTech, editTech }) => {
   return (
     <li className="collection-item">
       <div>
-        <a href="#add-tech-modal" className='modal-trigger'>
+        <a href="#tech-modal" className='modal-trigger' onClick={() => editTech(tech)}>
           <span className='black-text'>ID: <span className='blue-text'>{tech.id}</span> <br />Name:</span> {tech.firstName} {tech.lastName}
         </a>
-        <a href="#!" className="secondary-content">
+        <a href="#!" className="secondary-content" onClick={() => deleteTech(tech.id)}>
           <i className="material-icons grey-text">delete</i>
         </a>
       </div>
@@ -18,6 +20,8 @@ const LogItem = ({ tech }) => {
 
 LogItem.propTypes = {
   tech: PropTypes.object.isRequired,
+  deleteTech: PropTypes.func.isRequired,
+  editTech: PropTypes.func.isRequired,
 }
 
-export default LogItem
+export default connect(null, { deleteTech, editTech })(LogItem)

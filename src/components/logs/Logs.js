@@ -40,9 +40,4 @@ const mapStateToProps = (state) => ({
   log: state.log,
 })
 
-// const mapDispatchToProps = {
-
-// }
-
-
 export default connect(mapStateToProps, { getLogs })(Logs);

@@ -3,7 +3,7 @@ import SearchBar from './components/layouts/SearchBar';
 import Logs from './components/logs/Logs';
 import AddBtn from './components/layouts/AddBtn';
 import LogModal from './components/logs/LogModal';
-import AddTechModal from './components/techs/AddTechModal';
+import TechModal from './components/techs/TechModal';
 import TechListModal from './components/techs/TechListModal';
 import { Provider } from 'react-redux';
 import store from './store';
@@ -23,7 +23,7 @@ function App() {
         <div className="container">
           <AddBtn />
           <LogModal />
-          <AddTechModal />
+          <TechModal />
           <TechListModal />
           <Logs />
         </div>

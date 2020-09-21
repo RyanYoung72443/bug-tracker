@@ -1,8 +1,9 @@
-import React from 'react'
-import { clearCurrent } from '../../actions/logActions'
-import { connect } from 'react-redux'
+import React from 'react';
+import { clearCurrent } from '../../actions/logActions';
+import { clearTech } from '../../actions/techActions';
+import { connect } from 'react-redux';
 
-const AddBtn = ({ clearCurrent }) => {
+const AddBtn = ({ clearCurrent, clearTech }) => {
   return (
     <div className='fixed-action-btn'>
       <a
@@ -19,7 +20,10 @@ const AddBtn = ({ clearCurrent }) => {
           </a>
         </li>
         <li>
-          <a href="#add-tech-modal" className="btn-floating red modal-trigger">
+          <a
+            href="#tech-modal"
+            className="btn-floating red modal-trigger"
+            onClick={() => clearTech()}>
             <i className="material-icons">person_add</i>
           </a>
         </li>
@@ -28,4 +32,4 @@ const AddBtn = ({ clearCurrent }) => {
   )
 }
 
-export default connect(null, { clearCurrent })(AddBtn)
+export default connect(null, { clearCurrent, clearTech })(AddBtn)
