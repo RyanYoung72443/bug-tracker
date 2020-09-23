@@ -10,12 +10,13 @@ import {
 import { setLoading } from './logActions'
 import { Tech } from '../models/tech.model';
 import { useDispatch } from 'react-redux';
+import { server } from '../constants/index';
 
 export const getTechs = () => async (dispatch = useDispatch()) => {
   try {
     setLoading();
 
-    const rs = await fetch('/techs');
+    const rs = await fetch(`${server}/techs`);
     const data: Array<Tech> = await rs.json();
 
     dispatch({
@@ -34,7 +35,7 @@ export const addTech = (tech: Tech) => async (dispatch = useDispatch()) => {
   try {
     setLoading();
 
-    const rs = await fetch('/techs', {
+    const rs = await fetch(`${server}/techs`, {
       method: 'POST',
       body: JSON.stringify(tech),
       headers: {
@@ -59,7 +60,7 @@ export const deleteTech = (id: number) => async (dispatch = useDispatch()) => {
   try {
     setLoading();
 
-    await fetch(`/techs/${id}`, {
+    await fetch(`${server}/techs/${id}`, {
       method: 'DELETE'
     });
 
@@ -79,7 +80,7 @@ export const updateTech = (tech: Tech) => async (dispatch = useDispatch()) => {
   try {
     setLoading();
 
-    const rs = await fetch(`/techs/${tech.id}`, {
+    const rs = await fetch(`${server}/techs/${tech.id}`, {
       method: 'PUT',
       body: JSON.stringify(tech),
       headers: {

@@ -11,12 +11,13 @@ import {
   SET_LOADING,
   UPDATE_LOG,
 } from './types';
+import { server } from '../constants/index'
 
 export const getLogs = () => async (dispatch = useDispatch()) => {
   try {
     setLoading();
 
-    const rs = await fetch('/logs');
+    const rs = await fetch(`${server}/logs`);
     const data: Array<Log> = await rs.json();
 
     dispatch({
@@ -35,7 +36,7 @@ export const addLog = (log: Log) => async (dispatch = useDispatch()) => {
   try {
     setLoading();
 
-    const rs = await fetch('/logs', {
+    const rs = await fetch(`${server}/logs`, {
       method: 'POST',
       body: JSON.stringify(log),
       headers: {
@@ -60,7 +61,7 @@ export const deleteLog = (id: number) => async (dispatch = useDispatch()) => {
   try {
     setLoading();
 
-    await fetch(`/logs/${id}`, {
+    await fetch(`${server}/logs/${id}`, {
       method: 'DELETE'
     });
 
@@ -80,7 +81,7 @@ export const updateLog = (log: Log) => async (dispatch = useDispatch()) => {
   try {
     setLoading();
 
-    const rs = await fetch(`/logs/${log.id}`, {
+    const rs = await fetch(`${server}/logs/${log.id}`, {
       method: 'PUT',
       body: JSON.stringify(log),
       headers: {
