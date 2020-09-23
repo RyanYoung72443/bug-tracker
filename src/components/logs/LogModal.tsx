@@ -45,6 +45,8 @@ const LogModal: React.FC<{ addLog, current, updateLog }> = ({ addLog, current, u
     }
   }
 
+  const attentionClick = () => setAttention(!attention)
+
   return (
     <div id='log-modal' className='modal' style={modalStyle}>
       <div className="modal-content">
@@ -86,7 +88,7 @@ const LogModal: React.FC<{ addLog, current, updateLog }> = ({ addLog, current, u
                   type="checkbox"
                   className='filled-in'
                   checked={attention}
-                  onChange={e => setAttention(!attention)}
+                  onChange={attentionClick}
                 />
                 <span>Needs Attention</span>
               </label>
@@ -98,16 +100,16 @@ const LogModal: React.FC<{ addLog, current, updateLog }> = ({ addLog, current, u
           <div className="input-field">
             <p>
               <label>
-              <select
-              name="tech"
-              value={tech}
-              className='browser-default'
-              onChange={e => setTech(e.target.value)}>
-                <option value="" disabled>Select Repair State</option>
-                <option value="Complete" >Complete</option>
-                <option value="In Progress" >In Progress</option>
-                <option value="Crucial" >Crucial</option>
-              </select>
+                <select
+                  name="tech"
+                  value={tech}
+                  className='browser-default'
+                  onChange={e => setTech(e.target.value)}>
+                  <option value="" disabled>Select Repair State</option>
+                  <option value="Complete" >Complete</option>
+                  <option value="In Progress" >In Progress</option>
+                  <option value="Crucial" >Crucial</option>
+                </select>
               </label>
             </p>
           </div>
@@ -127,13 +129,13 @@ const LogModal: React.FC<{ addLog, current, updateLog }> = ({ addLog, current, u
 }
 
 LogModal.propTypes = {
-  addLog: PropTypes.func,
-  updateLog: PropTypes.func,
+  addLog: PropTypes.func.isRequired,
+  updateLog: PropTypes.func.isRequired,
   current: PropTypes.object,
 }
 
 const mapStateToProps = state => ({
-  current: state.log.current
+  current: state.log.current,
 })
 
 const modalStyle = {
