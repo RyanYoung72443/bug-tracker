@@ -16,9 +16,9 @@ export interface Tech {
 
 export interface TechState {
   techs: Array<Tech>
-  current: Tech
+  current?: Tech
   loading: boolean
-  error: Error
+  error?: Error
 }
 
 interface GetTechs {

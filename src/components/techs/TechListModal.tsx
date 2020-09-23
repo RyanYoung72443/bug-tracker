@@ -1,9 +1,11 @@
 import React from 'react';
 import TechItem from './TechItem';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
+import { AppStore, TechState } from '../../models';
+import { CombinedState } from 'redux';
 
-const TechListModal: React.FC<{ tech }> = ({ tech: { techs, loading } }) => {
+const TechListModal: React.FC<{ tech: TechState }> = ({ tech: { techs, loading } }) => {
 
   return (
     <div id="tech-list-modal" className='modal'>
@@ -17,11 +19,11 @@ const TechListModal: React.FC<{ tech }> = ({ tech: { techs, loading } }) => {
   )
 }
 
-TechListModal.propTypes = {
-  tech: PropTypes.object.isRequired,
-}
+// TechListModal.propTypes = {
+//   tech: PropTypes.object.isRequired,
+// }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: CombinedState<AppStore>) => ({
   tech: state.tech,
 })
 

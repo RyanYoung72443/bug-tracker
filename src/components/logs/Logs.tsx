@@ -3,12 +3,14 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import LogItem from './LogItem';
 import Preloader from '../layouts/Preloader';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { getLogs } from '../../actions/logActions';
+import { AppStore, Log, LogState } from '../../models';
+import { CombinedState } from 'redux';
 
-const Logs: React.FC<{ log, getLogs }> = ({ log: { logs, loading, search }, getLogs }) => {
+const Logs: React.FC<{ log: LogState, getLogs: Function }> = ({ log: { logs, loading, search }, getLogs }) => {
 
-  const compareSearch = (log, search) => {
+  const compareSearch = (log: Log, search: string) => {
     return (log.message.toLowerCase().includes(search.toLowerCase()) ||
       log.tech.toLowerCase().includes(search.toLowerCase()) ||
       log.id.toString().toLowerCase().includes(search.toLowerCase()));
@@ -31,12 +33,12 @@ const Logs: React.FC<{ log, getLogs }> = ({ log: { logs, loading, search }, getL
     )
 };
 
-Logs.propTypes = {
-  log: PropTypes.object.isRequired,
-  getLogs: PropTypes.func.isRequired,
-}
+// Logs.propTypes = {
+//   log: PropTypes.object.isRequired,
+//   getLogs: PropTypes.func.isRequired,
+// }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: CombinedState<AppStore>) => ({
   log: state.log,
 })
 

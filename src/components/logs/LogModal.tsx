@@ -1,12 +1,15 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import TechSelectOptions from '../techs/TechSelectOptions';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { addLog, updateLog } from '../../actions/logActions';
 
-import M from 'materialize-css/dist/js/materialize.min.js';
+import M from 'materialize-css';
+import { Log } from '../../models/log.model';
+import { CombinedState } from 'redux';
+import { AppStore } from '../../models';
 
-const LogModal: React.FC<{ addLog, current, updateLog }> = ({ addLog, current, updateLog }) => {
+const LogModal: React.FC<{ addLog: Function, current: Log | undefined, updateLog: Function }> = ({ addLog, current, updateLog }) => {
   const [message, setMessage] = useState('');
   const [attention, setAttention] = useState(false);
   const [tech, setTech] = useState('');
@@ -74,7 +77,6 @@ const LogModal: React.FC<{ addLog, current, updateLog }> = ({ addLog, current, u
               value={tech}
               className='browser-default'
               onChange={e => setTech(e.target.value)}>
-              <option value="" disabled>Select Technician</option>
               <TechSelectOptions />
             </select>
           </div>
@@ -128,13 +130,13 @@ const LogModal: React.FC<{ addLog, current, updateLog }> = ({ addLog, current, u
   )
 }
 
-LogModal.propTypes = {
-  addLog: PropTypes.func.isRequired,
-  updateLog: PropTypes.func.isRequired,
-  current: PropTypes.object,
-}
+// LogModal.propTypes = {
+//   addLog: PropTypes.func.isRequired,
+//   updateLog: PropTypes.func.isRequired,
+//   current: PropTypes.object,
+// }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: CombinedState<AppStore>) => ({
   current: state.log.current,
 })
 

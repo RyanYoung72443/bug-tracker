@@ -12,11 +12,9 @@ import {
 import { Log, LogActionTypes, LogState } from '../models/log.model';
 
 const initialState = {
-  logs: null,
+  logs: [],
   search: '',
-  current: null,
   loading: false,
-  err: null
 }
 
 export default (state: LogState = initialState,

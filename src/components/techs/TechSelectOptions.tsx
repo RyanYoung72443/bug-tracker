@@ -1,24 +1,29 @@
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { getTechs } from '../../actions/techActions'
+import { AppStore, TechState } from '../../models';
+import { CombinedState } from 'redux';
 
-const TechSelectOptions: React.FC<{ getTechs, tech }> = ({ getTechs, tech: { techs, loading } }) => {
+const TechSelectOptions: React.FC<{ getTechs: Function, tech: TechState }> = ({ getTechs, tech: { techs, loading } }) => {
   useEffect(() => {
     getTechs();
   }, [getTechs]);
 
   return (
-    !loading && !!techs && techs.map(tech => <option key={tech.id} value={`${tech.firstName} ${tech.lastName}`}> {tech.firstName} {tech.lastName} </option>)
+    <Fragment>
+      <option value="" disabled>Select Technician</option>
+      {!loading && !!techs && techs.map(tech => <option key={tech.id} value={`${tech.firstName} ${tech.lastName}`}> {tech.firstName} {tech.lastName} </option>)}
+    </Fragment>
   )
 }
 
-TechSelectOptions.propTypes = {
-  tech: PropTypes.object.isRequired,
-  getTechs: PropTypes.func.isRequired,
-}
+// TechSelectOptions.propTypes = {
+//   tech: PropTypes.object.isRequired,
+//   getTechs: PropTypes.func.isRequired,
+// }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: CombinedState<AppStore>) => ({
   tech: state.tech
 })
 

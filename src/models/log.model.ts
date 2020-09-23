@@ -21,9 +21,9 @@ export interface Log {
 export interface LogState {
   logs: Array<Log>
   search: string
-  current: Log
+  current?: Log
   loading: boolean
-  err: Error
+  err?: Error
 }
 
 interface AddLog {

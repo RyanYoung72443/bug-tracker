@@ -10,10 +10,8 @@ import {
 import { TechActionTypes, TechState } from "../models/tech.model";
 
 const initialState = {
-  techs: null,
-  current: null,
+  techs: [],
   loading: false,
-  error: null
 }
 
 export default (state: TechState = initialState,

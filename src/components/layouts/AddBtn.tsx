@@ -3,7 +3,7 @@ import { clearCurrent } from '../../actions/logActions';
 import { clearTech } from '../../actions/techActions';
 import { connect } from 'react-redux';
 
-const AddBtn = ({ clearCurrent, clearTech }) => {
+const AddBtn: React.FC<{ clearCurrent: Function, clearTech: Function }> = ({ clearCurrent, clearTech }) => {
   return (
     <div className='fixed-action-btn'>
       <a

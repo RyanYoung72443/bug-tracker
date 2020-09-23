@@ -1,9 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { deleteTech, editTech } from '../../actions/techActions';
+import { Tech } from '../../models';
 
-const LogItem: React.FC<{ tech, deleteTech, editTech }> = ({ tech, deleteTech, editTech }) => {
+const LogItem: React.FC<{ tech: Tech, deleteTech: Function, editTech: Function }> = ({ tech, deleteTech, editTech }) => {
   return (
     <li className="collection-item">
       <div>
@@ -18,10 +19,10 @@ const LogItem: React.FC<{ tech, deleteTech, editTech }> = ({ tech, deleteTech, e
   )
 }
 
-LogItem.propTypes = {
-  tech: PropTypes.object.isRequired,
-  deleteTech: PropTypes.func.isRequired,
-  editTech: PropTypes.func.isRequired,
-}
+// LogItem.propTypes = {
+//   tech: PropTypes.object.isRequired,
+//   deleteTech: PropTypes.func.isRequired,
+//   editTech: PropTypes.func.isRequired,
+// }
 
 export default connect(null, { deleteTech, editTech })(LogItem)
