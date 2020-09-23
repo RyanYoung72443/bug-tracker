@@ -1,11 +1,12 @@
 import React, { Fragment, useState, useEffect } from 'react';
+import TechSelectOptions from '../techs/TechSelectOptions';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addLog, updateLog } from '../../actions/logActions';
 
 import M from 'materialize-css/dist/js/materialize.min.js';
 
-const LogModal = ({ addLog, current, updateLog }) => {
+const LogModal: React.FC<{ addLog, current, updateLog }> = ({ addLog, current, updateLog }) => {
   const [message, setMessage] = useState('');
   const [attention, setAttention] = useState(false);
   const [tech, setTech] = useState('');
@@ -72,9 +73,7 @@ const LogModal = ({ addLog, current, updateLog }) => {
               className='browser-default'
               onChange={e => setTech(e.target.value)}>
               <option value="" disabled>Select Technician</option>
-              <option value="John Doe" >John Doe</option>
-              <option value="Sam Smith" >Sam Smith</option>
-              <option value="Sara Wilson" >Sara Wilson</option>
+              <TechSelectOptions />
             </select>
           </div>
         </div>
@@ -87,7 +86,6 @@ const LogModal = ({ addLog, current, updateLog }) => {
                   type="checkbox"
                   className='filled-in'
                   checked={attention}
-                  value={attention}
                   onChange={e => setAttention(!attention)}
                 />
                 <span>Needs Attention</span>
@@ -129,8 +127,8 @@ const LogModal = ({ addLog, current, updateLog }) => {
 }
 
 LogModal.propTypes = {
-  addLog: PropTypes.func.isRequired,
-  updateLog: PropTypes.func.isRequired,
+  addLog: PropTypes.func,
+  updateLog: PropTypes.func,
   current: PropTypes.object,
 }
 

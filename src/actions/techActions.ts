@@ -8,14 +8,15 @@ import {
   UPDATE_TECH
 } from './types';
 import { setLoading } from './logActions'
+import { Tech } from '../models/tech.model';
+import { useDispatch } from 'react-redux';
 
-
-export const getTechs = () => async (dispatch) => {
+export const getTechs = () => async (dispatch = useDispatch()) => {
   try {
     setLoading();
 
     const rs = await fetch('/techs');
-    const data = await rs.json();
+    const data: Array<Tech> = await rs.json();
 
     dispatch({
       type: GET_TECHS,
@@ -29,7 +30,7 @@ export const getTechs = () => async (dispatch) => {
   }
 }
 
-export const addTech = tech => async (dispatch) => {
+export const addTech = (tech: Tech) => async (dispatch = useDispatch()) => {
   try {
     setLoading();
 
@@ -40,7 +41,7 @@ export const addTech = tech => async (dispatch) => {
         'Content-Type': 'application/json'
       }
     });
-    const data = await rs.json();
+    const data: Tech = await rs.json();
 
     dispatch({
       type: ADD_TECH,
@@ -54,7 +55,7 @@ export const addTech = tech => async (dispatch) => {
   }
 }
 
-export const deleteTech = id => async dispatch => {
+export const deleteTech = (id: number) => async (dispatch = useDispatch()) => {
   try {
     setLoading();
 
@@ -74,7 +75,7 @@ export const deleteTech = id => async dispatch => {
   }
 }
 
-export const updateTech = tech => async dispatch => {
+export const updateTech = (tech: Tech) => async (dispatch = useDispatch()) => {
   try {
     setLoading();
 
@@ -86,7 +87,7 @@ export const updateTech = tech => async dispatch => {
       }
     });
 
-    const data = await rs.json();
+    const data: Tech = await rs.json();
 
     dispatch({
       type: UPDATE_TECH,
@@ -100,7 +101,7 @@ export const updateTech = tech => async dispatch => {
   }
 }
 
-export const editTech = tech => {
+export const editTech = (tech: Tech) => {
   return {
     type: EDIT_TECH,
     payload: tech

@@ -6,7 +6,7 @@ import { addTech, updateTech } from '../../actions/techActions';
 
 
 
-const TechModal = ({ addTech, current, updateTech }) => {
+const TechModal: React.FC<{ addTech, current, updateTech }> = ({ addTech, current, updateTech }) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
 
@@ -86,8 +86,8 @@ const TechModal = ({ addTech, current, updateTech }) => {
 
 TechModal.propTypes = {
   current: PropTypes.object,
-  addTech: PropTypes.func.isRequired,
-  updateTech: PropTypes.func.isRequired,
+  addTech: PropTypes.func,
+  updateTech: PropTypes.func
 }
 
 const mapStateToProps = state => ({

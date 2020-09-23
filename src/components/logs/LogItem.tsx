@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 import M from 'materialize-css/dist/js/materialize.min.js'
 
-const LogItem = ({ log, deleteLog, setCurrent }) => {
+const LogItem: React.FC<{ log, deleteLog, setCurrent }> = ({ log, deleteLog, setCurrent }) => {
 
   const onDelete = () => {
     deleteLog(log.id);

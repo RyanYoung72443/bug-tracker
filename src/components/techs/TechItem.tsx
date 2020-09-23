@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { deleteTech, editTech } from '../../actions/techActions';
 
-const LogItem = ({ tech, deleteTech, editTech }) => {
+const LogItem: React.FC<{ tech, deleteTech, editTech }> = ({ tech, deleteTech, editTech }) => {
   return (
     <li className="collection-item">
       <div>

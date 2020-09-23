@@ -1,3 +1,5 @@
+import { useDispatch } from 'react-redux';
+import { Log } from '../models/log.model';
 import {
   ADD_LOG,
   CLEAR_CURRENT,
@@ -10,12 +12,12 @@ import {
   UPDATE_LOG,
 } from './types';
 
-export const getLogs = () => async (dispatch) => {
+export const getLogs = () => async (dispatch = useDispatch()) => {
   try {
     setLoading();
 
     const rs = await fetch('/logs');
-    const data = await rs.json();
+    const data: Array<Log> = await rs.json();
 
     dispatch({
       type: GET_LOGS,
@@ -29,7 +31,7 @@ export const getLogs = () => async (dispatch) => {
   }
 }
 
-export const addLog = log => async (dispatch) => {
+export const addLog = (log: Log) => async (dispatch = useDispatch()) => {
   try {
     setLoading();
 
@@ -40,7 +42,7 @@ export const addLog = log => async (dispatch) => {
         'Content-Type': 'application/json'
       }
     });
-    const data = await rs.json();
+    const data: Log = await rs.json();
 
     dispatch({
       type: ADD_LOG,
@@ -54,7 +56,7 @@ export const addLog = log => async (dispatch) => {
   }
 }
 
-export const deleteLog = id => async dispatch => {
+export const deleteLog = (id: number) => async (dispatch = useDispatch()) => {
   try {
     setLoading();
 
@@ -74,7 +76,7 @@ export const deleteLog = id => async dispatch => {
   }
 }
 
-export const updateLog = log => async dispatch => {
+export const updateLog = (log: Log) => async (dispatch = useDispatch()) => {
   try {
     setLoading();
 
@@ -86,7 +88,7 @@ export const updateLog = log => async dispatch => {
       }
     });
 
-    const data = await rs.json();
+    const data: Log = await rs.json();
 
     dispatch({
       type: UPDATE_LOG,
@@ -100,14 +102,14 @@ export const updateLog = log => async dispatch => {
   }
 }
 
-export const searchLogs = (text) => {
+export const searchLogs = (text: string) => {
   return {
     type: SEARCH_LOGS,
     payload: text
   }
 }
 
-export const setCurrent = log => {
+export const setCurrent = (log: Log) => {
   return {
     type: SET_CURRENT,
     payload: log

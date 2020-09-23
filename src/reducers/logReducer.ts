@@ -9,6 +9,7 @@ import {
   SET_LOADING,
   UPDATE_LOG
 } from '../actions/types';
+import { Log, LogActionTypes, LogState } from '../models/log.model';
 
 const initialState = {
   logs: null,
@@ -18,7 +19,8 @@ const initialState = {
   err: null
 }
 
-export default (state = initialState, action) => {
+export default (state: LogState = initialState,
+  action: LogActionTypes) => {
   switch (action.type) {
     case GET_LOGS:
       return {
@@ -35,13 +37,13 @@ export default (state = initialState, action) => {
     case DELETE_LOG:
       return {
         ...state,
-        logs: state.logs.filter(log => log.id !== action.payload),
+        logs: state.logs.filter((log: Log) => log.id !== action.payload),
         loading: false
       }
     case UPDATE_LOG:
       return {
         ...state,
-        logs: state.logs.map(log => log.id === action.payload.id ? action.payload : log)
+        logs: state.logs.map((log: Log) => log.id === action.payload.id ? action.payload : log)
       }
     case SEARCH_LOGS:
       return {

@@ -7,6 +7,7 @@ import {
   TECHS_ERROR,
   UPDATE_TECH
 } from "../actions/types";
+import { TechActionTypes, TechState } from "../models/tech.model";
 
 const initialState = {
   techs: null,
@@ -15,7 +16,8 @@ const initialState = {
   error: null
 }
 
-export default (state = initialState, action) => {
+export default (state: TechState = initialState,
+  action: TechActionTypes) => {
   switch (action.type) {
     case GET_TECHS:
       return {

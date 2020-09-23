@@ -6,7 +6,7 @@ import Preloader from '../layouts/Preloader';
 import PropTypes from 'prop-types';
 import { getLogs } from '../../actions/logActions';
 
-const Logs = ({ log: { logs, loading, search }, getLogs }) => {
+const Logs: React.FC<{ log, getLogs }> = ({ log: { logs, loading, search }, getLogs }) => {
 
   const compareSearch = (log, search) => {
     return (log.message.toLowerCase().includes(search.toLowerCase()) ||
