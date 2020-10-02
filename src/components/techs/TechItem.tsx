@@ -1,5 +1,4 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { deleteTech, editTech } from '../../actions/techActions';
 import { Tech } from '../../models';
@@ -18,11 +17,5 @@ const LogItem: React.FC<{ tech: Tech, deleteTech: Function, editTech: Function }
     </li>
   )
 }
-
-// LogItem.propTypes = {
-//   tech: PropTypes.object.isRequired,
-//   deleteTech: PropTypes.func.isRequired,
-//   editTech: PropTypes.func.isRequired,
-// }
 
 export default connect(null, { deleteTech, editTech })(LogItem)

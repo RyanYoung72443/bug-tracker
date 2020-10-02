@@ -1,9 +1,7 @@
-/* eslint-disable no-unused-expressions */
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import LogItem from './LogItem';
 import Preloader from '../layouts/Preloader';
-// import PropTypes from 'prop-types';
 import { getLogs } from '../../actions/logActions';
 import { AppStore, Log, LogState } from '../../models';
 import { CombinedState } from 'redux';
@@ -32,11 +30,6 @@ const Logs: React.FC<{ log: LogState, getLogs: Function }> = ({ log: { logs, loa
       </ul>
     )
 };
-
-// Logs.propTypes = {
-//   log: PropTypes.object.isRequired,
-//   getLogs: PropTypes.func.isRequired,
-// }
 
 const mapStateToProps = (state: CombinedState<AppStore>) => ({
   log: state.log,

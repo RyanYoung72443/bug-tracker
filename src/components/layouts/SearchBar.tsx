@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
 import { connect } from 'react-redux';
-// import PropTypes from 'prop-types';
 import { searchLogs } from '../../actions/logActions'
 
 const SearchBar: React.FC<{ searchLogs: Function }> = ({ searchLogs }) => {
@@ -34,9 +33,5 @@ const SearchBar: React.FC<{ searchLogs: Function }> = ({ searchLogs }) => {
     </nav>
   );
 };
-
-// SearchBar.propTypes = {
-//   searchLogs: PropTypes.func,
-// }
 
 export default connect(null, { searchLogs })(SearchBar);

@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
-// import PropTypes from 'prop-types';
 import { getTechs } from '../../actions/techActions'
 import { AppStore, TechState } from '../../models';
 import { CombinedState } from 'redux';
@@ -18,10 +17,6 @@ const TechSelectOptions: React.FC<{ getTechs: Function, tech: TechState }> = ({ 
   )
 }
 
-// TechSelectOptions.propTypes = {
-//   tech: PropTypes.object.isRequired,
-//   getTechs: PropTypes.func.isRequired,
-// }
 
 const mapStateToProps = (state: CombinedState<AppStore>) => ({
   tech: state.tech

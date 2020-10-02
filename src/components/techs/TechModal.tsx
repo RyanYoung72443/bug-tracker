@@ -1,7 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react'
 import M from 'materialize-css'
 import { connect } from 'react-redux';
-// import PropTypes from 'prop-types';
 import { addTech, updateTech } from '../../actions/techActions';
 import { AppStore, Tech } from '../../models';
 import { CombinedState } from 'redux';
@@ -85,12 +84,6 @@ const TechModal: React.FC<{ addTech: Function, current: Tech | undefined, update
     </div>
   )
 }
-
-// TechModal.propTypes = {
-//   current: PropTypes.object,
-//   addTech: PropTypes.func,
-//   updateTech: PropTypes.func
-// }
 
 const mapStateToProps = (state: CombinedState<AppStore>) => ({
   current: state.tech.current

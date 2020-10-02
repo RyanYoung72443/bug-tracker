@@ -1,7 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import TechSelectOptions from '../techs/TechSelectOptions';
 import { connect } from 'react-redux';
-// import PropTypes from 'prop-types';
 import { addLog, updateLog } from '../../actions/logActions';
 
 import M from 'materialize-css';
@@ -129,12 +128,6 @@ const LogModal: React.FC<{ addLog: Function, current: Log | undefined, updateLog
     </div>
   )
 }
-
-// LogModal.propTypes = {
-//   addLog: PropTypes.func.isRequired,
-//   updateLog: PropTypes.func.isRequired,
-//   current: PropTypes.object,
-// }
 
 const mapStateToProps = (state: CombinedState<AppStore>) => ({
   current: state.log.current,

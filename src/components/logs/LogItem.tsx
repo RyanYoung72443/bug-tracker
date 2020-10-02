@@ -2,9 +2,8 @@ import React from 'react';
 import Moment from 'react-moment';
 import { connect } from 'react-redux';
 import { deleteLog, setCurrent } from '../../actions/logActions';
-// import PropTypes from 'prop-types';
 
-import M from 'materialize-css'
+import M from 'materialize-css';
 import { Log } from '../../models/log.model';
 
 const LogItem: React.FC<{ log: Log, deleteLog: Function, setCurrent: Function }> = ({ log, deleteLog, setCurrent }) => {
@@ -36,11 +35,5 @@ const LogItem: React.FC<{ log: Log, deleteLog: Function, setCurrent: Function }>
     </li>
   )
 }
-
-// LogItem.propTypes = {
-//   log: PropTypes.object.isRequired,
-//   deleteLog: PropTypes.func.isRequired,
-//   setCurrent: PropTypes.func.isRequired,
-// }
 
 export default connect(null, { deleteLog, setCurrent })(LogItem)
