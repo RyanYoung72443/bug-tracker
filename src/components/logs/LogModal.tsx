@@ -63,7 +63,7 @@ const LogModal: React.FC<{ addLog: Function; current: Log | undefined; updateLog
               type="text"
               name="message"
               value={message}
-              onChange={(e) => setMessage(e.target.value)}
+              onChange={e => setMessage(e.target.value)}
             />
             <Fragment>
               {!message ? (
@@ -81,7 +81,7 @@ const LogModal: React.FC<{ addLog: Function; current: Log | undefined; updateLog
               name="tech"
               value={tech}
               className="browser-default"
-              onChange={(e) => setTech(e.target.value)}>
+              onChange={e => setTech(e.target.value)}>
               <TechSelectOptions />
             </select>
           </div>
