@@ -13,7 +13,7 @@ import {
 export interface Log {
   id: number;
   message: string;
-  attention: boolean;
+  logStatus: LogStatusE;
   tech: string;
   date: Date;
 }
@@ -24,6 +24,12 @@ export interface LogState {
   current?: Log;
   loading: boolean;
   err?: Error;
+}
+
+export enum LogStatusE {
+  'resolved' = 'Resolved',
+  'needsAttention' = 'Needs Attention',
+  'inProgress' = 'In Progress'
 }
 
 interface AddLog {

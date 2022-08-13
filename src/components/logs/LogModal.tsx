@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { addLog, updateLog } from '../../actions/logActions';
 
 import M from 'materialize-css';
-import { Log } from '../../models/log.model';
+import { Log, LogStatusE } from '../../models/log.model';
 import { CombinedState } from 'redux';
 import { AppStore } from '../../models';
 
@@ -14,17 +14,17 @@ const LogModal: React.FC<{ addLog: Function; current: Log | undefined; updateLog
   updateLog
 }) => {
   const [message, setMessage] = useState('');
-  const [attention, setAttention] = useState(false);
+  const [status, setStatus] = useState('');
   const [tech, setTech] = useState('');
 
   useEffect(() => {
     if (current) {
       setMessage(current.message);
-      setAttention(current.attention);
+      setStatus(current.logStatus);
       setTech(current.tech);
     } else {
       setMessage('');
-      setAttention(false);
+      setStatus('');
       setTech('');
     }
   }, [current]);
@@ -36,7 +36,7 @@ const LogModal: React.FC<{ addLog: Function; current: Log | undefined; updateLog
       const newLog = {
         id: current ? current.id : null,
         message,
-        attention,
+        logStatus: status,
         tech,
         date: new Date()
       };
@@ -47,11 +47,11 @@ const LogModal: React.FC<{ addLog: Function; current: Log | undefined; updateLog
 
       setMessage('');
       setTech('');
-      setAttention(false);
+      setStatus('');
     }
   };
 
-  const attentionClick = () => setAttention(!attention);
+  const logStatusChange = (e: React.ChangeEvent<HTMLSelectElement>) => setStatus(e.target.value);
 
   return (
     <div id="log-modal" className="modal" style={modalStyle}>
@@ -63,7 +63,7 @@ const LogModal: React.FC<{ addLog: Function; current: Log | undefined; updateLog
               type="text"
               name="message"
               value={message}
-              onChange={e => setMessage(e.target.value)}
+              onChange={(e) => setMessage(e.target.value)}
             />
             <Fragment>
               {!message ? (
@@ -81,7 +81,7 @@ const LogModal: React.FC<{ addLog: Function; current: Log | undefined; updateLog
               name="tech"
               value={tech}
               className="browser-default"
-              onChange={e => setTech(e.target.value)}>
+              onChange={(e) => setTech(e.target.value)}>
               <TechSelectOptions />
             </select>
           </div>
@@ -90,43 +90,36 @@ const LogModal: React.FC<{ addLog: Function; current: Log | undefined; updateLog
         <div className="row">
           <div className="input-field">
             <p>
-              <label>
-                <input
-                  type="checkbox"
-                  className="filled-in"
-                  checked={attention}
-                  onChange={attentionClick}
-                />
-                <span>Needs Attention</span>
-              </label>
+              <label htmlFor="status">Repair State</label>
+              <select
+                name="status"
+                value={status}
+                className="browser-default"
+                onChange={logStatusChange}>
+                <option value="" disabled>
+                  Select Repair State
+                </option>
+                {Object.keys(LogStatusE).map((logStatus, i) => (
+                  <option key={i} value={logStatus}>
+                    {LogStatusE[logStatus]}
+                  </option>
+                ))}
+              </select>
             </p>
           </div>
         </div>
-
-        {/* <div className="row">
-          <div className="input-field">
-            <p>
-              <label>
-                <select
-                  name="tech"
-                  value={tech}
-                  className='browser-default'
-                  onChange={e => setTech(e.target.value)}>
-                  <option value="" disabled>Select Repair State</option>
-                  <option value="Complete" >Complete</option>
-                  <option value="In Progress" >In Progress</option>
-                  <option value="Crucial" >Crucial</option>
-                </select>
-              </label>
-            </p>
-          </div>
-        </div> */}
       </div>
       <div className="modal-footer">
         <a
           href="#!"
           onClick={onSubmit}
-          className={`modal-close waves-effect ${attention ? 'red' : 'green'} btn`}>
+          className={`modal-close waves-effect ${
+            LogStatusE[status] === LogStatusE.needsAttention
+              ? 'red'
+              : LogStatusE[status] === LogStatusE.inProgress
+              ? 'orange'
+              : 'green'
+          } btn`}>
           Enter
         </a>
       </div>

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { deleteLog, setCurrent } from '../../actions/logActions';
 
 import M from 'materialize-css';
-import { Log } from '../../models/log.model';
+import { Log, LogStatusE } from '../../models/log.model';
 
 const LogItem: React.FC<{ log: Log; deleteLog: Function; setCurrent: Function }> = ({
   log,
@@ -21,7 +21,13 @@ const LogItem: React.FC<{ log: Log; deleteLog: Function; setCurrent: Function }>
       <div>
         <a
           href="#log-modal"
-          className={`modal-trigger ${log.attention ? 'red-text' : 'green-text'}`}
+          className={`modal-trigger ${
+            LogStatusE[log.logStatus] === LogStatusE.needsAttention
+              ? 'red-text'
+              : LogStatusE[log.logStatus] === LogStatusE.inProgress
+              ? 'orange-text'
+              : 'green-text'
+          }`}
           onClick={() => setCurrent(log)}>
           {log.message}
         </a>
