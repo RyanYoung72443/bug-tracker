@@ -3,14 +3,16 @@ import { clearCurrent } from '../../actions/logActions';
 import { clearTech } from '../../actions/techActions';
 import { connect } from 'react-redux';
 
-const AddBtn: React.FC<{ clearCurrent: Function, clearTech: Function }> = ({ clearCurrent, clearTech }) => {
+const AddBtn: React.FC<{ clearCurrent: Function; clearTech: Function }> = ({
+  clearCurrent,
+  clearTech
+}) => {
   return (
-    <div className='fixed-action-btn'>
+    <div className="fixed-action-btn">
       <a
         href="#log-modal"
         className="btn-floating btn-large blue darken-2 modal-trigger"
-        onClick={() => clearCurrent()}
-      >
+        onClick={() => clearCurrent()}>
         <i className="large material-icons">add</i>
       </a>
       <ul>
@@ -29,7 +31,7 @@ const AddBtn: React.FC<{ clearCurrent: Function, clearTech: Function }> = ({ cle
         </li>
       </ul>
     </div>
-  )
-}
+  );
+};
 
-export default connect(null, { clearCurrent, clearTech })(AddBtn)
+export default connect(null, { clearCurrent, clearTech })(AddBtn);

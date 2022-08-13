@@ -5,9 +5,8 @@ import { CombinedState } from 'redux';
 import { connect } from 'react-redux';
 
 const TechListModal: React.FC<{ tech: TechState }> = ({ tech: { techs, loading } }) => {
-
   return (
-    <div id="tech-list-modal" className='modal'>
+    <div id="tech-list-modal" className="modal">
       <div className="modal-content">
         <h4 className="center">Technician List</h4>
         <ul className="collection">
@@ -15,11 +14,11 @@ const TechListModal: React.FC<{ tech: TechState }> = ({ tech: { techs, loading }
         </ul>
       </div>
     </div>
-  )
-}
+  );
+};
 
 const mapStateToProps = (state: CombinedState<AppStore>) => ({
-  tech: state.tech,
-})
+  tech: state.tech
+});
 
 export default connect(mapStateToProps)(TechListModal);

@@ -14,50 +14,49 @@ import { Log, LogActionTypes, LogState } from '../models/log.model';
 const initialState = {
   logs: [],
   search: '',
-  loading: false,
-}
+  loading: false
+};
 
-export default (state: LogState = initialState,
-  action: LogActionTypes) => {
+export default (state: LogState = initialState, action: LogActionTypes) => {
   switch (action.type) {
     case GET_LOGS:
       return {
         ...state,
         logs: action.payload,
-        loading: false,
+        loading: false
       };
     case ADD_LOG:
       return {
         ...state,
         logs: [...state.logs, action.payload],
         loading: false
-      }
+      };
     case DELETE_LOG:
       return {
         ...state,
         logs: state.logs.filter((log: Log) => log.id !== action.payload),
         loading: false
-      }
+      };
     case UPDATE_LOG:
       return {
         ...state,
-        logs: state.logs.map((log: Log) => log.id === action.payload.id ? action.payload : log)
-      }
+        logs: state.logs.map((log: Log) => (log.id === action.payload.id ? action.payload : log))
+      };
     case SEARCH_LOGS:
       return {
         ...state,
         search: action.payload
-      }
+      };
     case SET_CURRENT:
       return {
         ...state,
         current: action.payload
-      }
+      };
     case CLEAR_CURRENT:
       return {
         ...state,
         current: null
-      }
+      };
     case SET_LOADING:
       return {
         ...state,
@@ -73,4 +72,4 @@ export default (state: LogState = initialState,
     default:
       return state;
   }
-}
+};

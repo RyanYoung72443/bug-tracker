@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { connect } from 'react-redux';
-import { searchLogs } from '../../actions/logActions'
+import { searchLogs } from '../../actions/logActions';
 
 const SearchBar: React.FC<{ searchLogs: Function }> = ({ searchLogs }) => {
   const text = useRef<HTMLInputElement>(null);
@@ -9,17 +9,17 @@ const SearchBar: React.FC<{ searchLogs: Function }> = ({ searchLogs }) => {
     if (text && text.current) {
       searchLogs(text.current.value);
     }
-  }
+  };
 
   return (
-    <nav style={{ marginBottom: '30px' }} className='blue'>
+    <nav style={{ marginBottom: '30px' }} className="blue">
       <div className="nav-wrapper">
         <form>
-          <div className='input-field'>
+          <div className="input-field">
             <input
               type="search"
               id="search"
-              placeholder='Search Logs..'
+              placeholder="Search Logs.."
               ref={text}
               onChange={onChange}
             />

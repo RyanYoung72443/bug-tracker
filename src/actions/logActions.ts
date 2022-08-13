@@ -9,9 +9,9 @@ import {
   SEARCH_LOGS,
   SET_CURRENT,
   SET_LOADING,
-  UPDATE_LOG,
+  UPDATE_LOG
 } from './types';
-import { server } from '../constants/index'
+import { server } from '../constants/index';
 
 export const getLogs = () => async (dispatch = useDispatch()) => {
   try {
@@ -23,14 +23,14 @@ export const getLogs = () => async (dispatch = useDispatch()) => {
     dispatch({
       type: GET_LOGS,
       payload: data
-    })
+    });
   } catch (error) {
     dispatch({
       type: LOGS_ERROR,
       payload: error.response.data
-    })
+    });
   }
-}
+};
 
 export const addLog = (log: Log) => async (dispatch = useDispatch()) => {
   try {
@@ -48,14 +48,14 @@ export const addLog = (log: Log) => async (dispatch = useDispatch()) => {
     dispatch({
       type: ADD_LOG,
       payload: data
-    })
+    });
   } catch (error) {
     dispatch({
       type: LOGS_ERROR,
       payload: error.response.data
-    })
+    });
   }
-}
+};
 
 export const deleteLog = (id: number) => async (dispatch = useDispatch()) => {
   try {
@@ -68,14 +68,14 @@ export const deleteLog = (id: number) => async (dispatch = useDispatch()) => {
     dispatch({
       type: DELETE_LOG,
       payload: id
-    })
+    });
   } catch (error) {
     dispatch({
       type: LOGS_ERROR,
       payload: error.response.data
-    })
+    });
   }
-}
+};
 
 export const updateLog = (log: Log) => async (dispatch = useDispatch()) => {
   try {
@@ -94,35 +94,35 @@ export const updateLog = (log: Log) => async (dispatch = useDispatch()) => {
     dispatch({
       type: UPDATE_LOG,
       payload: data
-    })
+    });
   } catch (error) {
     dispatch({
       type: LOGS_ERROR,
       payload: error.response.data
-    })
+    });
   }
-}
+};
 
 export const searchLogs = (text: string) => {
   return {
     type: SEARCH_LOGS,
     payload: text
-  }
-}
+  };
+};
 
 export const setCurrent = (log: Log) => {
   return {
     type: SET_CURRENT,
     payload: log
-  }
-}
+  };
+};
 
 export const clearCurrent = () => {
   return {
     type: CLEAR_CURRENT,
     payload: null
-  }
-}
+  };
+};
 
 export const setLoading = () => {
   return {

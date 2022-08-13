@@ -1,8 +1,7 @@
-import { LogState } from "./log.model";
-import { TechState } from "./tech.model";
-
+import { LogState } from './log.model';
+import { TechState } from './tech.model';
 
 export interface AppStore {
-  log: LogState
-  tech: TechState,
+  log: LogState;
+  tech: TechState;
 }

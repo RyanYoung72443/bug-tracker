@@ -8,7 +8,11 @@ import { Log } from '../../models/log.model';
 import { CombinedState } from 'redux';
 import { AppStore } from '../../models';
 
-const LogModal: React.FC<{ addLog: Function, current: Log | undefined, updateLog: Function }> = ({ addLog, current, updateLog }) => {
+const LogModal: React.FC<{ addLog: Function; current: Log | undefined; updateLog: Function }> = ({
+  addLog,
+  current,
+  updateLog
+}) => {
   const [message, setMessage] = useState('');
   const [attention, setAttention] = useState(false);
   const [tech, setTech] = useState('');
@@ -35,22 +39,22 @@ const LogModal: React.FC<{ addLog: Function, current: Log | undefined, updateLog
         attention,
         tech,
         date: new Date()
-      }
+      };
 
       current ? updateLog(newLog) : addLog(newLog);
 
-      M.toast({ html: `Log ${current ? 'updated' : 'added'} by ${tech}` })
+      M.toast({ html: `Log ${current ? 'updated' : 'added'} by ${tech}` });
 
       setMessage('');
       setTech('');
       setAttention(false);
     }
-  }
+  };
 
-  const attentionClick = () => setAttention(!attention)
+  const attentionClick = () => setAttention(!attention);
 
   return (
-    <div id='log-modal' className='modal' style={modalStyle}>
+    <div id="log-modal" className="modal" style={modalStyle}>
       <div className="modal-content">
         <h4>Enter System Log</h4>
         <div className="row">
@@ -62,9 +66,11 @@ const LogModal: React.FC<{ addLog: Function, current: Log | undefined, updateLog
               onChange={e => setMessage(e.target.value)}
             />
             <Fragment>
-              {!message ? (<label htmlFor="message" className='active'>
-                Log Message
-              </label>) : null}
+              {!message ? (
+                <label htmlFor="message" className="active">
+                  Log Message
+                </label>
+              ) : null}
             </Fragment>
           </div>
         </div>
@@ -74,7 +80,7 @@ const LogModal: React.FC<{ addLog: Function, current: Log | undefined, updateLog
             <select
               name="tech"
               value={tech}
-              className='browser-default'
+              className="browser-default"
               onChange={e => setTech(e.target.value)}>
               <TechSelectOptions />
             </select>
@@ -87,7 +93,7 @@ const LogModal: React.FC<{ addLog: Function, current: Log | undefined, updateLog
               <label>
                 <input
                   type="checkbox"
-                  className='filled-in'
+                  className="filled-in"
                   checked={attention}
                   onChange={attentionClick}
                 />
@@ -120,22 +126,21 @@ const LogModal: React.FC<{ addLog: Function, current: Log | undefined, updateLog
         <a
           href="#!"
           onClick={onSubmit}
-          className={`modal-close waves-effect ${attention ? 'red' : 'green'} btn`}
-        >
+          className={`modal-close waves-effect ${attention ? 'red' : 'green'} btn`}>
           Enter
         </a>
       </div>
     </div>
-  )
-}
+  );
+};
 
 const mapStateToProps = (state: CombinedState<AppStore>) => ({
-  current: state.log.current,
-})
+  current: state.log.current
+});
 
 const modalStyle = {
   width: '75%',
   height: '75%'
-}
+};
 
-export default connect(mapStateToProps, { addLog, updateLog })(LogModal)
+export default connect(mapStateToProps, { addLog, updateLog })(LogModal);

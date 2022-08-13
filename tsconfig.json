@@ -2,12 +2,7 @@
   "compilerOptions": {
     "target": "es6",
     "downlevelIteration": true,
-    "lib": [
-      "ES6",
-      "dom",
-      "DOM.Iterable",
-      "esnext"
-    ],
+    "lib": ["ES6", "dom", "DOM.Iterable", "esnext"],
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -18,7 +13,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react",
-    "strict": true,
+    "strict": false,
     "allowJs": false,
     "sourceMap": true,
     "declaration": true, // Generate corresponding .d.ts file
@@ -27,10 +22,6 @@
     "incremental": true, // Enable incremental compilation by reading/writing information from prior compilations to a file on disk
     "noFallthroughCasesInSwitch": true // Report errors for fallthrough cases in switch statement
   },
-  "include": [
-    "src"
-  ],
-  "types": [
-    "materialize-css"
-  ]
+  "include": ["src"],
+  "types": ["materialize-css"]
 }

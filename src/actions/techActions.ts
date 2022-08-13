@@ -7,7 +7,7 @@ import {
   TECHS_ERROR,
   UPDATE_TECH
 } from './types';
-import { setLoading } from './logActions'
+import { setLoading } from './logActions';
 import { Tech } from '../models/tech.model';
 import { useDispatch } from 'react-redux';
 import { server } from '../constants/index';
@@ -22,14 +22,14 @@ export const getTechs = () => async (dispatch = useDispatch()) => {
     dispatch({
       type: GET_TECHS,
       payload: data
-    })
+    });
   } catch (error) {
     dispatch({
       type: TECHS_ERROR,
       payload: error.response.data
-    })
+    });
   }
-}
+};
 
 export const addTech = (tech: Tech) => async (dispatch = useDispatch()) => {
   try {
@@ -47,14 +47,14 @@ export const addTech = (tech: Tech) => async (dispatch = useDispatch()) => {
     dispatch({
       type: ADD_TECH,
       payload: data
-    })
+    });
   } catch (error) {
     dispatch({
       type: TECHS_ERROR,
       payload: error.response.data
-    })
+    });
   }
-}
+};
 
 export const deleteTech = (id: number) => async (dispatch = useDispatch()) => {
   try {
@@ -67,14 +67,14 @@ export const deleteTech = (id: number) => async (dispatch = useDispatch()) => {
     dispatch({
       type: DELETE_TECH,
       payload: id
-    })
+    });
   } catch (error) {
     dispatch({
       type: TECHS_ERROR,
       payload: error.response.data
-    })
+    });
   }
-}
+};
 
 export const updateTech = (tech: Tech) => async (dispatch = useDispatch()) => {
   try {
@@ -93,25 +93,25 @@ export const updateTech = (tech: Tech) => async (dispatch = useDispatch()) => {
     dispatch({
       type: UPDATE_TECH,
       payload: data
-    })
+    });
   } catch (error) {
     dispatch({
       type: TECHS_ERROR,
       payload: error.response.data
-    })
+    });
   }
-}
+};
 
 export const editTech = (tech: Tech) => {
   return {
     type: EDIT_TECH,
     payload: tech
-  }
-}
+  };
+};
 
 export const clearTech = () => {
   return {
     type: CLEAR_TECH,
     payload: null
-  }
-}
+  };
+};
